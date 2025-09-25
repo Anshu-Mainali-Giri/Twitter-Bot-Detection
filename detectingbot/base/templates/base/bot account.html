@@ -1,0 +1,63 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+
+    <style>
+        .{
+            padding:0;
+            margin:0;
+            font-family: sans-serif;
+        }
+        body{
+            background:  #00acee;
+        }
+        .container{
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left : 50%;
+            transform:translate(-50%,-50%);
+            width:100%;
+             
+
+        }
+        .container span{
+            color:white;
+            text-transform:uppercase;
+            display:inline-block;
+        }
+        .text1{
+            font-size: 30px;
+            font-weight :700;
+            letter-spacing:8px;
+            margin-bottom:20px;
+            animation :text 3s 1;
+        }
+        .text2{
+            font-size:60px;
+            color:black;
+        }
+        @keyframes text{
+            0%{
+                color:black;
+                margin-bottom:-40px;
+            }
+            30%{
+                letter-spacing:25px;
+                margin-border:40px;
+            }
+        }
+
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <span class="text1">This is a</span>
+            <span class="text2">Bot Account</span>
+        </div>
+
+    </body>
+</html>
+
+
+{% endblock %}

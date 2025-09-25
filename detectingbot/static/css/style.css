@@ -1,0 +1,314 @@
+
+
+html, body{
+    margin: 0%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+:root{
+
+    /*      Theme colors        */
+    --text-gray: #3f4954;
+    --text-light : #686666da;
+    --bg-color: #0f0f0f;
+    --white: #ffffff;
+    --midnight: #104f55;
+
+    /* gradient color   */
+    --sky: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+
+    /*      theme font-family   */
+    --Abel: 'Abel', cursive;
+    --Anton: 'Anton', cursive;
+    --Josefin : 'Josefin', cursive;
+    --Lexend: 'Lexend', cursive;
+    --Livvic : 'Livvic', cursive;
+}
+
+ 
+
+/* ---------------- Global Classes ---------------*/
+
+a{
+    text-decoration: none;
+    color: var(--text-gray);
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;    
+    flex-wrap: wrap;
+}
+
+ul{
+    list-style-type: none;
+}
+
+h1{
+    font-family: var(--Lexend);
+    font-size: 2.5rem;
+}
+
+h2{
+    font-family: var(--Lexend);
+}
+
+h3{
+    font-family: var(--Abel);
+    font-size: 1.3rem;
+}
+
+button.btn{
+    border: none;
+    border-radius: 2rem;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    font-family: var(--Livvic);
+    cursor: pointer;
+}
+
+span{
+    font-family: var(--Abel);
+}
+
+.container{
+    margin: 0 5vw;
+}
+
+.text-gray{
+    color: var(--text-gray);
+}
+
+p{
+    font-family: var(--Lexend);
+    color: var(--text-light);
+}
+
+/* ------x------- Global Classes -------x-------*/
+
+/* --------------- navbar ----------------- */
+
+.nav{
+    background: rgb(248, 243, 243);
+    padding: 0 2rem;
+    height: 0rem;
+    min-height: 10vh;
+    overflow: hidden;
+    transition: height 1s ease-in-out;
+}
+
+.nav .nav-menu{    
+    justify-content: space-between;
+}
+
+
+.nav .nav-items{
+    display: flex;
+    margin: 0;
+}
+
+.nav .nav-items .nav-link{
+   list-style: none;
+   display: inline-block;
+   padding: 8px;
+   text-align: center;
+   justify-content: center;
+   font-family: var(--Abel);
+   font-size: 24px;
+}
+
+.nav .nav-brand a{
+    font-size: 1.6rem;
+    font-family: var(--Lexend);
+    font-size: 2.2rem;
+}
+.nav .nav-brand a i:hover{
+    color: rgb(49, 138, 179);}
+
+/* -------x------- navbar ---------x------- */
+
+
+/* ----------------- Main Content----------- */
+
+/* --------------- Site title ---------------- */
+main section .blog{
+    background-image: url(/images/Abract01.png);
+}
+main section .blog .container .header h1{
+    color: #104f55;
+    text-align: center;
+}
+main .site-title .site-background h3{
+    color: #0f0f0f;
+    align-items: center;
+}
+main .site-title .counter-up{
+    text-align:center;
+    position: relative;
+    height: 400px;
+    bottom: 0px;
+    justify-content: space-between;
+    background: transparent;
+    display: flex;
+    padding: 0 50px;
+
+}
+main .site-title .counter-up .content{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.content .box{
+    border-radius: 3px;
+    border: 1px dashed rgb(204, 169, 169);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    flex-direction: column;
+    font-size: 22px; 
+    position: relative;
+    bottom: -100%;
+    right:- 100%;
+} 
+.content .box .icon{
+    font-size: 30px;
+
+}
+.content .box .counter{
+    font-size: 30px;
+}
+
+.header{
+    padding-top: 60px;
+    font-size: 20px;
+    margin: auto;
+    line-height: 50px;
+    font-size: 30px;
+}
+.sub-container{
+    max-width: 1200px;
+    margin: auto;
+    padding: 48px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.sub-container .teams .design{
+   color: #1c3f8b;
+   justify-content: center;
+   
+}
+.caption .social-links a{
+display: inline-block;
+padding: 5px 10px;
+margin-right: 8px;
+font-size: 40px;
+border-radius: 5px;
+transition: transform 2s ease, color 2s ease;
+align-items: center;
+}
+.teams{
+    margin: 10px;
+    padding: 22px;
+    max-width: 30%;
+    cursor: pointer;
+    transition: 0.4s;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,.5);
+   
+
+}
+
+.teams img{
+    width: 250px;
+    height: 200px;
+}
+
+.name{
+    padding: 12px;
+    font-weight: bold;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+.design{
+    font-style: italic;
+    color: #9fa6b4;
+    font-size: 20px;
+}
+.social-links{
+    margin: 14px;
+}
+.social-links a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    font-size: 28px;
+    transition: .4s;
+}
+
+.social-links a:hover{
+    transform: scale(1.5);
+}
+
+.facebook{
+    color: #1c3f8b;
+    }
+    .instagram{
+    color: #e1306c;}
+    
+
+
+main .site-title{
+    background: url('images/abstract2.png');
+    background-size: cover;
+    height: 110vh;
+    display: flex;
+    justify-content: center;
+}
+
+main .site-title .site-background{
+    padding-top: 10rem;
+    text-align: center;
+    color: var(--white);
+}
+
+main .site-title h1, h3{
+    margin: .3rem;
+}
+
+main .site-title .btn{
+    margin: 1.8rem;
+    background: var(--sky);
+}
+
+main .site-title .btn:hover{
+    background: transparent;
+    border: 1px solid var(--white);
+    color: var(--white);
+}
+
+/* --------x------ Site title --------x------- */
+
+
+main .blog{
+    background: url('/images/Abract01.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 100vh;
+    width: 100%;
+    background-size: 65%;
+}
+
+/*-------progressbar--------*/
+
+
+
+
+
+

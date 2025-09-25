@@ -1,0 +1,766 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BOT</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
+    <!-- Custom Style   -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<style>
+    
+
+html, body{
+    margin: 0%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    padding: 0;
+ 
+}
+
+:root{
+
+    /*      Theme colors        */
+    --text-gray: #3f4954;
+    --text-light : #686666da;
+    --bg-color: #0f0f0f;
+    --white: #ffffff;
+    --midnight: #104f55;
+        /*
+        --primary-color:#edf2fc;
+        --secondary-color:#212121;
+        */
+        --primary-color:#000106;
+        --secondary-color:#212121;
+    
+    /* gradient color   */
+    --sky: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+
+    /*      theme font-family   */
+    --Abel: 'Abel', cursive;
+    --Anton: 'Anton', cursive;
+    --Josefin : 'Josefin', cursive;
+    --Lexend: 'Lexend', cursive;
+    --Livvic : 'Livvic', cursive;
+}
+
+ 
+
+/* ---------------- Global Classes ---------------*/
+
+a{
+    text-decoration: none;
+    color: var(--text-gray);
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;    
+    flex-wrap: wrap;
+}
+
+ul{
+    list-style-type: none;
+}
+
+h1{
+    font-family: var(--Lexend);
+    font-size: 2.5rem;
+}
+
+h2{
+    font-family: var(--Lexend);
+}
+
+h3{
+    font-family: var(--Abel);
+    font-size: 1.3rem;
+}
+
+button.btn{
+    border: none;
+    border-radius: 2rem;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    font-family: var(--Livvic);
+    cursor: pointer;
+}
+
+span{
+    font-family: var(--Abel);
+}
+
+.container{
+    margin: 0 5vw;
+}
+
+.text-gray{
+    color: var(--text-gray);
+}
+
+p{
+    font-family: var(--Lexend);
+    color: var(--text-light);
+}
+
+/* ------x------- Global Classes -------x-------*/
+
+/* --------------- navbar ----------------- */
+
+.nav{
+    background-color:white;
+    padding: 0 2rem;
+    height: 0rem;
+    min-height: 10vh;
+    overflow: hidden;
+    transition: height 1s ease-in-out;
+}
+
+.nav .nav-menu{    
+    justify-content: space-between;
+}
+
+
+.nav .nav-items{
+    display: flex;
+    margin: 0;
+}
+
+.nav .nav-items .nav-link{
+   list-style: none;
+   display: inline-block;
+   padding: 8px;
+   text-align: center;
+   justify-content: center;
+   font-family: var(--Abel);
+   font-size: 24px;
+}
+
+.nav .nav-brand a{
+    font-size: 1.6rem;
+    font-family: var(--Lexend);
+    font-size: 2.2rem;
+}
+.nav .nav-brand a i:hover{
+    color: rgb(49, 138, 179);}
+
+    .header p{
+    font-weight: bolder;
+    align-items: center;
+    color: #104f55;
+    padding-left: 300px;
+}
+/* -------x------- navbar ---------x------- */
+
+.header p{
+    font-weight: bolder;
+    align-items: center;
+    color: #104f55;
+    padding-left: 275px;
+}
+main section .blog .container .header h1{
+    color: #104f55;
+    text-align: center;
+}
+main .site-title .site-background h3{
+    color: #0f0f0f;
+    align-items: center;
+}
+main .site-title .counter-up{
+    text-align:center;
+    position: relative;
+    height: 400px;
+    bottom: 0px;
+    justify-content: space-between;
+    background: transparent;
+    display: flex;
+    padding: 0 50px;
+
+}
+main .site-title .counter-up .content{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.training{
+  box-sizing: border-box;
+  border-radius: 40%;
+}
+.content .box{
+    border-radius: 3px;
+    border: 1px dashed rgb(204, 169, 169);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    flex-direction: column;
+    font-size: 22px; 
+    position: relative;
+    bottom: -100%;
+    right:- 100%;
+} 
+.content .box .icon{
+    font-size: 30px;
+
+}
+.content .box .counter{
+    font-size: 30px;
+}
+
+.header{
+    padding-top: 60px;
+    font-size: 20px;
+    margin: auto;
+    line-height: 50px;
+    font-size: 30px;
+}
+.sub-container{
+    max-width: 1200px;
+    margin: auto;
+    padding: 48px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.sub-container .teams .design{
+   color: #000000;
+   justify-content: center;
+   
+}
+.caption .social-links a{
+display: inline-block;
+padding: 5px 10px;
+margin-right: 8px;
+font-size: 40px;
+border-radius: 5px;
+transition: transform 2s ease, color 2s ease;
+align-items: center;
+justify-content: center;
+}
+.teams{
+    margin: 10px;
+    padding: 22px;
+    max-width: 30%;
+    cursor: pointer;
+    transition: 0.4s;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,.5);
+   
+
+}
+
+.teams img{
+    width: 250px;
+    height: 200px;
+}
+
+.name{
+    padding: 12px;
+    font-weight: bold;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+.design{
+    font-style: italic;
+    color: #000000;
+    font-size: 20px;
+}
+.social-links{
+    margin: 14px;
+}
+.social-links a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    font-size: 28px;
+    transition: .4s;
+}
+
+.social-links a:hover{
+    transform: scale(1.5);
+}
+
+.facebook{
+    color: #1c3f8b;
+    }
+    .instagram{
+    color: #e1306c;}
+    
+
+    main .site-title{
+    background: url('images/abstract2.png');
+    background-size: cover;
+    height: 110vh;
+    display: flex;
+    justify-content: center;
+}
+
+
+main .site-title .site-background{
+    padding-top: 10rem;
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+main .site-title h1, h3{
+    margin: .3rem;
+}
+
+main .site-title .btn{
+    margin: 1.8rem;
+    background: var(--sky);
+}
+
+main .site-title .btn:hover{
+    background: transparent;
+    border: 1px solid var(--white);
+    color: var(--white);
+}
+
+/* --------x------ Site title --------x------- */
+
+
+main .blog{
+    background: url('/images/Abract01.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 100vh;
+    width: 100%;
+    background-size: 65%;
+}
+ 
+        #second{
+        font-size: 20px;
+        }
+
+         /* styling search bar */
+        .search input[type=text]{
+            width:400px;
+            height:38px;
+            border-radius:25px 0px 0px 25px;
+            border: none;
+        }
+
+        .search{
+            float:left;
+            margin:0px;
+        }
+
+        .search button{
+            background-color: black;
+            color: #f2f2f2;
+            float: right;
+            padding: 5px 10px;
+            margin-right: 16px;
+            font-size: 12px;
+            border-radius:0px 25px 25px 0px;
+            border: none;
+            cursor: pointer;
+        }
+
+
+/*-------progressbar--------*/
+
+
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+
+html, body{
+    margin: 0%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+:root{
+
+    /*      Theme colors        */
+    --text-gray: #3f4954;
+    --text-light : #686666da;
+    --bg-color: #0f0f0f;
+    --white: #ffffff;
+    --midnight: #104f55;
+
+    /* gradient color   */
+    --sky: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+
+    /*      theme font-family   */
+    --Abel: 'Abel', cursive;
+    --Anton: 'Anton', cursive;
+    --Josefin : 'Josefin', cursive;
+    --Lexend: 'Lexend', cursive;
+    --Livvic : 'Livvic', cursive;
+}
+
+ 
+
+/* ---------------- Global Classes ---------------*/
+
+a{
+    text-decoration: none;
+    color: var(--text-gray);
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;    
+    flex-wrap: wrap;
+}
+
+ul{
+    list-style-type: none;
+}
+
+h1{
+    font-family: var(--Lexend);
+    font-size: 2.5rem;
+}
+
+h2{
+    font-family: var(--Lexend);
+}
+
+h3{
+    font-family: var(--Abel);
+    font-size: 1.3rem;
+}
+
+button.btn{
+    border: none;
+    border-radius: 2rem;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    font-family: var(--Livvic);
+    cursor: pointer;
+}
+
+span{
+    font-family: var(--Abel);
+}
+
+.container{
+    margin: 0 5vw;
+}
+
+.text-gray{
+    color: var(--text-gray);
+}
+
+p{
+    font-family: var(--Lexend);
+    color: var(--text-light);
+}
+
+/* ------x------- Global Classes -------x-------*/
+
+/* --------------- navbar ----------------- */
+
+.nav{
+    background-color:white;
+    padding: 0 2rem;
+    height: 0rem;
+    min-height: 10vh;
+    overflow: hidden;
+    transition: height 1s ease-in-out;
+}
+
+.nav .nav-menu{    
+    justify-content: space-between;
+}
+
+
+.nav .nav-items{
+    display: flex;
+    margin: 0;
+}
+
+.nav .nav-items .nav-link{
+   list-style: none;
+   display: inline-block;
+   padding: 8px;
+   text-align: center;
+   justify-content: center;
+   font-family: var(--Abel);
+   font-size: 24px;
+}
+
+.nav .nav-brand a{
+    font-size: 1.6rem;
+    font-family: var(--Lexend);
+    font-size: 2.2rem;
+}
+.nav .nav-brand a i:hover{
+    color: rgb(49, 138, 179);}
+
+
+  label{
+    width: 400px;
+    padding: 3px;
+    font-size: 26px;
+    font-weight: bolder;
+    word-spacing: 3.5px;
+    text-transform: uppercase;
+    animation: light 1s ease-in-out infinite alternate;
+  }
+
+  @keyframes light{
+    from{
+      color: rgb(10, 10, 10);
+      text-shadow: 0 0 10px #3743eb,0 0 20px #3743eb, 0 0 30px #3743eb,0 0 40px #3743eb,
+      0 0 50px #3743eb,0 0 60px #3743eb,0 0 70px #3743eb,0 0 80px #3743eb,0 0 90px #3743eb,
+      0 0 100px #3743eb,;
+    }
+    to {
+      color: lightgrey;
+      text-shadow: 0 0 10px #3743eb,0 0 20px #3743eb, 0 0 30px #3743eb,0 0 40px #3743eb,
+      0 0 50px #3743eb,0 0 60px #3743eb,0 0 70px #3743eb,0 0 80px #3743eb,0 0 90px #3743eb,
+      0 0 100px #3743eb,;
+    }
+  }
+ 
+  input[type=text]{
+    width: 80%;
+    font-size: 23px;
+    padding: 12px;
+    margin: 10px 0px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    }
+  input[type=submit]{
+    padding: 13px;
+    width: 40%;
+    border: none;
+    font-size: 28px;
+    background-color: #255784;
+    color: #fff;
+    font-weight: 600;
+    border-radius:9px ;
+    transition: 0.2s;
+  }
+  input[type=submit]:hover{
+    color: #255784;
+    background: #7b9af0;
+    box-shadow: 0 0 10px #0c1014, 0 0 40px #121416;
+  }
+ 
+.training{
+  position: absolute;
+  left: 1190px;
+  top: 100px;
+  font-size: 20px;
+}
+.training h1{
+  width: 700px;
+    padding: 3px;
+    font-size: 28px;
+    color: #104f55;
+    font-weight: bolder;
+    word-spacing: 2.5px;
+
+}
+.training input[type=submit]{
+  padding: 13px;
+    width: 20%;
+    border: none;
+    font-size: 28px;
+    background-color: #255784;
+    color: #fff;
+    font-weight: 600;
+    border-radius:9px ;
+    transition: 0.2s;
+}
+::selection{
+  color: #fff;
+  background: #6665ee;
+}
+
+.main2{
+    width: 70%;
+    height: 50vh;
+    display: flex;
+  position: relative;
+  left: 250px;
+    
+  }
+  .profile-card{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    box-shadow: 0 0 22px #3336;
+    transition: .6s;
+    margin: 0 9px;
+  }
+
+  
+  .profile-card .img{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: .6s;
+    z-index: 99;
+  }
+  .profile-card:hover .img{
+    transform: translateY(-60px);
+  }
+  .img img{
+    width: 100%;
+    box-shadow: 0 0 22px #3336;
+    transition: .6s;
+  }
+  .profile-card:hover img{
+    border-radius: 10px;
+  }
+  .caption{
+    text-align: center;
+    transform: translateY(-80px);
+    opacity: 0;
+    transition: .6s;
+  }
+  .profile-card:hover .caption{
+    opacity: 1;
+  }
+  .caption h3{
+    color: #7c9ec5;
+    font-weight: bolder;
+    font-size: larger;
+    width: 30px;
+  }
+  .caption p{
+    font-size: 30px;
+    color: #030405;
+    margin: 9px 0 9px 0;
+  }
+  
+</style>
+<body >
+    
+    {% include 'base/navbar.html' %}
+  
+     <main>
+        <section class="site-title" >
+           
+            <div class="site-background">
+            <form method="post" action="{% url 'base:prediction'%}">
+              {% csrf_token %}
+              <div class="col-md-4 col-sm-4">
+                <label for="url">Insert the URL to be analysed:</label>
+              </div>
+              <input type="text" class="yoururl" name="url" placeholder="URL">
+              <br>
+               <input type="submit" value="Predict" name="submit" id="Submit">
+               <p>predicted output {{output}}</p>
+            </form>
+            </div>
+       
+
+          <div class="training">
+            <form method="post" action="{% url 'base:train_model'%}">
+              {% csrf_token %}
+                <h1>Train the model here!</h1>
+                <br>
+
+               <input type="submit" value="Train" name="submit" id="Submit">
+            </form>
+          </div>
+        
+       
+        </div>
+        </section>
+      
+    <br>
+    <br>
+    <br>
+    <br><br>
+    <div class="main2">
+      <div class="profile-card">
+        <div class="img">
+            <img src="{% static 'images/randomforest.png'%}">
+        </div>
+        <div class="caption">
+            <p>RandomForest-76%</p>
+           
+        </div>
+    </div>
+    <div class="profile-card">
+      <div class="img">
+          <img src="{% static 'images/precision.png'%}">
+      </div>
+      <div class="caption">
+          <p>Precision/recall curve</p>
+         
+      </div>
+    </div>
+    </div>
+
+
+        <section>
+            <div class="blog">
+                    <div class="container">
+                        <div class="header">
+                            <h1>OUR TEAM</h1>
+                            <p>With the constant guidance of our supervisor Mr.Prarup Gurung</p>
+
+                        </div>
+                        <div class="sub-container">
+                            <div class="teams">
+                                <img src="{% static 'images/g3.jpg' %}"  alt="">
+                                <div class="name">Anshu Mainali</div>
+                                <div class="design">Backend Developer</div>
+                                <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook facebook"></i></a>
+                                <a href="#"><i class="fab fa-instagram instagram"></i></a>
+                                </div>
+                            </div>
+                
+                        <div class="teams">
+                            <img src="{% static 'images/m2.jpg' %}"  alt="">
+                            <div class="name">Manisha Shrestha</div>
+                            <div class="design">Frontend Developer</div>
+                            <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram instagram"></i></a>
+                            </div>
+                        </div>
+                
+                        <div class="teams">
+                            <img src="{% static 'images/g1.jpg' %}" alt="">
+                            <div class="name">Rejika Maharjan</div>
+                            <div class="design">Frontend-Developer</div>
+                            <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>      
+    
+                </div>
+            
+        </section>
+
+    </main>
+  
+  <script src="./Font-Awesome/all.min.js"></script>
+    <!-- -------------x------------- Footer --------------------x------------------- -->
+
+    
+    
+</body>
+
+</html>
