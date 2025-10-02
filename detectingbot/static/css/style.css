@@ -451,5 +451,218 @@ html, body {
         font-size: 1rem;
     }
 }
+/* ---------------------------------
+   Dashboard Hero Section
+--------------------------------- */
+.dashboard-hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('../images/dashboard_bg.png') center/cover no-repeat;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 2rem auto;
+    max-width: 1200px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.dashboard-hero h1, .dashboard-hero p {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+}
+
+.dashboard-hero h1 { animation-delay: 0.3s; font-size: 3rem; margin-bottom: 1rem; }
+.dashboard-hero p { animation-delay: 0.6s; font-size: 1.3rem; color: #f0f0f0; }
+
+/* ---------------------------------
+   Dashboard Stats Cards
+--------------------------------- */
+.dashboard-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 3rem auto;
+    max-width: 1200px;
+}
+
+.stat-card {
+    background: #fff;
+    flex: 1 1 220px;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.stat-card h2 { font-size: 1.2rem; margin-bottom: 0.8rem; color: #104f55; }
+.stat-card p { font-size: 1.8rem; font-weight: 600; color: #333; }
+
+/* ---------------------------------
+   Recent Activity Table
+--------------------------------- */
+.recent-activity {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 1rem;
+}
+
+.recent-activity h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #104f55;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+table th {
+    background: #104f55;
+    color: #fff;
+    font-weight: 500;
+}
+
+table tr:nth-child(even) { background: #f4f4f4; }
+
+table tr:hover { background: #e1f0ff; }
+
+/* ---------------------------------
+   Dashboard Charts
+--------------------------------- */
+.dashboard-charts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 3rem auto;
+}
+
+.chart-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    flex: 1 1 500px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.chart-card h2 {
+    margin-bottom: 1rem;
+    color: #104f55;
+}
+
+.chart-placeholder {
+    height: 250px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #888;
+    font-size: 1.2rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .dashboard-stats, .dashboard-charts { flex-direction: column; align-items: center; }
+    .stat-card, .chart-card { width: 90%; margin-bottom: 1rem; }
+}
+
+/* Dashboard Cards */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.card {
+    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    width: 220px;
+    transition: 0.3s;
+}
+
+.card h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.card p {
+    font-size: 28px;
+    font-weight: bold;
+    color: #1e90ff;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* Recent Activity Table */
+.recent-activity {
+    width: 90%;
+    margin: 2rem auto;
+    overflow-x: auto;
+}
+
+.recent-activity table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.recent-activity th, .recent-activity td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.recent-activity th {
+    background-color: #1e90ff;
+    color: #fff;
+}
+
+.recent-activity tr:nth-child(even) {
+    background-color: #f5f5f5;
+}
+
+.recent-activity tr:hover {
+    background-color: #e0f0ff;
+}
+
 
 

@@ -1,0 +1,53 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block title %}Dashboard | Twitter Bot{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-stats">
+    <div class="cards-container">
+        <div class="card">
+            <h3>Total Tweets Analyzed</h3>
+            <p>{{ total_tweets }}</p>
+        </div>
+        <div class="card">
+            <h3>Bots Detected</h3>
+            <p>{{ bots_detected }}</p>
+        </div>
+        <div class="card">
+            <h3>Users Monitored</h3>
+            <p>{{ users_monitored }}</p>
+        </div>
+        <div class="card">
+            <h3>Model Accuracy</h3>
+            <p>{{ accuracy }}%</p>
+        </div>
+    </div>
+</section>
+
+<section class="recent-activity">
+    <h2>Recent Activity</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Tweets</th>
+                <th>Status</th>
+                <th>Confidence</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for activity in recent_activity %}
+            <tr>
+                <td>{{ activity.username }}</td>
+                <td>{{ activity.tweets }}</td>
+                <td>{{ activity.status }}</td>
+                <td>{{ activity.confidence }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+{% endblock %}
