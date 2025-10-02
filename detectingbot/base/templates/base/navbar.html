@@ -1,74 +1,14 @@
-{% load static%}
-<style>
+{% load static %}
 
-    :root{
-        /*
-        --primary-color:#edf2fc;
-        --secondary-color:#212121;
-        */
-        --primary-color:#000106;
-        --secondary-color:#212121;
-    }
-    .nav{
-    background-color:white;
-    padding: 0 2rem;
-    height: 0rem;
-    min-height: 10vh;
-    overflow: hidden;
-    transition: height 1s ease-in-out;
-}
-
-.nav .nav-menu{    
-    justify-content: space-between;
-}
-
-
-.nav .nav-items{
-    display: flex;
-    margin: 0;
-}
-
-.nav .nav-items .nav-link{
-   list-style: none;
-   display: inline-block;
-   padding: 8px;
-   text-align: center;
-   justify-content: center;
-   font-family: var(--Abel);
-   font-size: 24px;
-}
-.nav .nav-items .nav-link a{ 
-color: var(--secondary-color);
-}
-
-#icon{
-    width: 50px;
-    height:50px;
-    cursor: pointer;
-}
-
-</style>
 <nav class="nav">
-    <div class="nav-menu flex-row">
+    <div class="nav-menu container flex-row">
         <div class="nav-brand">
-            <a href="#" class="text-gray"><i class="fas fa-robot"></i> BOT DETECTION</a>
+            <a href="#"><i class="fas fa-robot"></i> BOT</a>
         </div>
-        <div>
-            <ul class="nav-items">
-                <li class="nav-link">
-                    <a href="{% url 'base:home' %}">HOME</a>
-                                </li>
-                <li class="nav-link">
-                    <a href="{% url 'base:about' %}">ABOUT US</a>
-                </li>
-                
-                <li class="nav-link">
-                    <a href="{% url 'base:bot' %}"> BOT ANALYSIS</a>
-                </li>
+        <ul class="nav-items">
+            <li class="nav-link"><a href="{% url 'base:home' %}">Home</a></li>
+            <li class="nav-link"><a href="{% url 'base:bot' %}">Bot Analysis</a></li>
+            <li class="nav-link"><a href="{% url 'base:about' %}">Dashboard</a></li>
         </ul>
-
-        </div>
-        
     </div>
 </nav>
-

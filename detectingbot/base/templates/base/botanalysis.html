@@ -1,553 +1,74 @@
 {% extends 'base/main.html' %}
 {% load static %}
+
+{% block title %}Bot Analysis | Twitter Bot{% endblock %}
+
 {% block content %}
 
- <style>
-.skill-bars{
-  padding: 25px 12px;
-  width: 750px;
-  background: #fff;
-  box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
-  border-radius: 10px;
-  height: 38vh;
-  position: relative;
-  bottom: 20px;
-  left:390px;
-  
-}
-.skill-bars h1{
-  font-size: 23px;
-  align-items: center;
-  text-align: center;
-}
-.skill-bars .bar{
-  margin: 10px 0;
-}
-.skill-bars .bar:first-child{
-  margin-top: 0px;
-}
-.skill-bars .bar .info{
-  margin-bottom: 5px;
-}
-.skill-bars .bar .info span{
-  font-weight: 500;
-  font-size: 17px;
-  opacity: 0;
-  animation: showText 0.5s 1s linear forwards;
-}
-@keyframes showText {
-  100%{
-    opacity: 1;
-  }
-}
-.skill-bars .bar .progress-line{
-  height: 10px;
-  width: 100%;
-  background: #f0f0f0;
-  position: relative;
-  transform: scaleX(0);
-  transform-origin: left;
-  border-radius: 10px;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.05),
-              0 1px rgba(255,255,255,0.8);
-  animation: animate 1s cubic-bezier(1,0,0.5,1) forwards;
-}
-@keyframes animate {
-  100%{
-    transform: scaleX(1);
-  }
-}
-.bar .progress-line span{
-  height: 100%;
-  position: absolute;
-  border-radius: 10px;
-  transform: scaleX(0);
-  transform-origin: left;
-  background: #6665ee;
-  animation: animate 1s 1s cubic-bezier(1,0,0.5,1) forwards;
-}
-.bar .progress-line.html span{
-  width: 75%;
-}
-.bar .progress-line.css span{
-  width: 76%;
-}
-.bar .progress-line.jquery span{
-  width: 74%;
-}
-.bar .progress-line.python span{
-  width: 67%;
-}
-.bar .progress-line.mysql span{
-  width: 70%;
-}
-.progress-line span::before{
-  position: absolute;
-  content: "";
-  top: -10px;
-  right: 0;
-  height: 0;
-  width: 0;
-  border: 7px solid transparent;
-  border-bottom-width: 0px;
-  border-right-width: 0px;
-  border-top-color: #000;
-  opacity: 0;
-  animation: showText2 0.5s 1.5s linear forwards;
-}
-.progress-line span::after{
-  position: absolute;
-  top: -28px;
-  right: 0;
-  font-weight: 500;
-  background: #000;
-  color: #fff;
-  padding: 1px 8px;
-  font-size: 12px;
-  border-radius: 3px;
-  opacity: 0;
-  animation: showText2 0.5s 1.5s linear forwards;
-}
-@keyframes showText2 {
-  100%{
-    opacity: 1;
-  }
-}
-.progress-line.html span::after{
-  content: "75%";
-}
-.progress-line.css span::after{
-  content: "76%";
-}
-.progress-line.jquery span::after{
-  content: "74%";
-}
-.progress-line.python span::after{
-  content: "67%";
-}
-.progress-line.mysql span::after{
-  content: "70%";
-}
+<!-- Hero Section -->
+<section class="bot-hero">
+    <div class="bot-hero-text">
+        <h1>Detect Twitter Bots Effectively</h1>
+        <p>Analyze Twitter accounts and detect automated bot activity using advanced machine learning models.</p>
+    </div>
+</section>
 
-:root{
+<!-- Bot Analysis Cards -->
+<section class="analysis-cards">
+    <div class="card">
+        <img src="{% static 'images/hibot.jpg' %}" alt="Bot Icon">
+        <h2>What is a Bot?</h2>
+        <p>Twitter bots are automated accounts that post content, follow users, and interact without human supervision.</p>
+    </div>
 
-    /*      Theme colors        */
-    --text-gray: #3f4954;
-    --text-light : #686666da;
-    --bg-color: #0f0f0f;
-    --white: #ffffff;
-    --midnight: #104f55;
+    <div class="card">
+        <img src="{% static 'images/mlimg.jpg' %}" alt="ML Icon">
+        <h2>How Machine Learning Works</h2>
+        <p>We train models using supervised classifiers to detect bot accounts accurately and improve performance over time.</p>
+    </div>
 
-    /* gradient color   */
-    --sky: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    <div class="card">
+        <img src="{% static 'images/obj.jpg' %}" alt="Objectives Icon">
+        <h2>Our Objectives</h2>
+        <p>Separate bot accounts from real users, improve detection accuracy, and provide insights for safer Twitter interactions.</p>
+    </div>
+</section>
 
-    /*      theme font-family   */
-    --Abel: 'Abel', cursive;
-    --Anton: 'Anton', cursive;
-    --Josefin : 'Josefin', cursive;
-    --Lexend: 'Lexend', cursive;
-    --Livvic : 'Livvic', cursive;
-}
+<!-- Accuracy / Skill Bars -->
+<section class="skill-bars">
+    <h1>Model Accuracy</h1>
+    <div class="bar"><div class="info"><span>SVM Classifier</span></div><div class="progress-line svm"><span></span></div></div>
+    <div class="bar"><div class="info"><span>Random Forest</span></div><div class="progress-line rf"><span></span></div></div>
+    <div class="bar"><div class="info"><span>Decision Tree</span></div><div class="progress-line dt"><span></span></div></div>
+    <div class="bar"><div class="info"><span>Naive Bayes</span></div><div class="progress-line nb"><span></span></div></div>
+    <div class="bar"><div class="info"><span>K Nearest Neighbour</span></div><div class="progress-line knn"><span></span></div></div>
+</section>
 
-/* ---------------- Global Classes ---------------*/
-
-a{
-    text-decoration: none;
-    color: var(--text-gray);
-}
-
-.flex-row{
-    display: flex;
-    flex-direction: row;    
-    flex-wrap: wrap;
-}
-
-ul{
-    list-style-type: none;
-}
-
-h1{
-    font-family: var(--Lexend);
-    font-size: 2.5rem;
-}
-
-h2{
-    font-family: var(--Lexend);
-}
-
-h3{
-    font-family: var(--Abel);
-    font-size: 1.3rem;
-}
-
-button.btn{
-    border: none;
-    border-radius: 2rem;
-    padding: 1rem 3rem;
-    font-size: 1rem;
-    font-family: var(--Livvic);
-    cursor: pointer;
-}
-
-span{
-    font-family: var(--Abel);
-}
-
-.container{
-    margin: 0 5vw;
-}
-
-.text-gray{
-    color: var(--text-gray);
-}
-
-p{
-    font-family: var(--Lexend);
-    color: var(--text-light);
-}
-
-/* ------x------- Global Classes -------x-------*/
-
-/* --------------- navbar ----------------- */
-
-.nav{
-    background-color:white;
-    padding: 0 2rem;
-    height: 0rem;
-    min-height: 10vh;
-    overflow: hidden;
-    transition: height 1s ease-in-out;
-}
-
-.nav .nav-menu{    
-    justify-content: space-between;
-}
-
-
-.nav .nav-items{
-    display: flex;
-    margin: 0;
-}
-
-.nav .nav-items .nav-link{
-   list-style: none;
-   display: inline-block;
-   padding: 8px;
-   text-align: center;
-   justify-content: center;
-   font-family: var(--Abel);
-   font-size: 24px;
-}
-
-.nav .nav-brand a{
-    font-size: 1.6rem;
-    font-family: var(--Lexend);
-    font-size: 2.2rem;
-}
-.nav .nav-brand a i:hover{
-    color: rgb(49, 138, 179);}
-
-
-  /*-------algo---------*/
-  .main{
-    width: 100%;
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-  }
-  .main2{
-    width: 70%;
-    height: 50vh;
-    display: flex;
-  position: relative;
-  left: 250px;
-    
-  }
-  .profile-card{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    box-shadow: 0 0 22px #3336;
-    transition: .6s;
-    margin: 0 9px;
-  }
-
-  
-  .profile-card .img{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: .6s;
-    z-index: 99;
-  }
-  .profile-card:hover .img{
-    transform: translateY(-60px);
-  }
-  .img img{
-    width: 100%;
-    box-shadow: 0 0 22px #3336;
-    transition: .6s;
-  }
-  .profile-card:hover img{
-    border-radius: 10px;
-  }
-  .caption{
-    text-align: center;
-    transform: translateY(-80px);
-    opacity: 0;
-    transition: .6s;
-  }
-  .profile-card:hover .caption{
-    opacity: 1;
-  }
-  .caption h3{
-    color: #7c9ec5;
-    font-weight: bolder;
-    font-size: larger;
-    width: 30px;
-  }
-  .caption p{
-    font-size: 30px;
-    color: #030405;
-    margin: 9px 0 9px 0;
-  }
-  
-
-  .foo h1{
-    align-items: center;
-    padding-left: 650px;
-    margin-bottom: 40px;
-    display: inline-block;
-    text-align: center;
-  }
-
-
-
-.statistics {
-  margin: 5rem 2rem 5rem 2rem; }
-  @media only screen and (max-width: 37.5em) {
-    .statistics {
-      margin: 10rem 4rem 2rem; } }
-  .statistics__text-box {
-    margin: 0 auto;
-    text-align: center;
-    width: 20%; }
-    @media only screen and (max-width: 37.5em) {
-      .statistics__text-box {
-        width: 80%; } }
-    .statistics__text-box .heading-secondary {
-      margin-bottom: 1.5rem; 
-    font-size: 30px;}
-  .statistics p {
-    font-size: 1.6rem;
-    color: #222124; }
-  .statistics__info {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    grid-column-gap: 7rem;
-    margin: 5rem 0 5rem; }
-    .statistics__info hr {
-      height: 1.5rem;
-      width: 100%;
-      background-color: #2acfcf;
-      position: absolute;
-      top: 50%;
-      z-index: -1;
-      border: none; }
-      @media only screen and (max-width: 37.5em) {
-        .statistics__info hr {
-          transform: rotate(90deg); } }
-    .statistics__info .statistic__box {
-      background-color: rgb(100, 161, 202);
-      padding: 0 3rem 3rem 3rem;
-      height: 18rem;
-      width: 17rem;
-      border-radius: 8px; }
-      .statistics__info .statistic__box--2 {
-        transform: translateY(4rem); }
-      .statistics__info .statistic__box--3 {
-        transform: translateY(8rem); }
-      .statistics__info .statistic__box figcaption {
-        font-weight: 700;
-        margin: 2rem 0 1.5rem 0; }
-    .statistics__info .statistic__image {
-      display: inline-block;
-      width: 5rem;
-      height: 2.5 rem;
-      margin-top: -3.25rem; }
-
-    .statistics__info .statistic__img {
-      width: 100%;
-      border-radius: 50%;
-    }
-      
-      .statistics__info .statistic__box h1{
-        font-size: 22px;
-      }
-
-
-
- </style>
-
-      
-      <section class="statistics">
-
-        <div class="statistics__text-box">
+<!-- ROC Curves / Model Performance -->
+<section class="roc-section">
+    <h1>ROC Curves / Model Performance</h1>
+    <div class="roc-cards">
+        <div class="profile-card">
+            <img src="{% static 'images/randomforest.png' %}" alt="Random Forest ROC">
+            <p>RandomForest - 76%</p>
         </div>
-        
-        <div class="statistics__info">
-  
-          <hr class="statistics__line">
-  
-          <figure class="statistic__box statistic__box--1">
-            <div class="statistic__image">
-            <img src="{% static 'images/hibot.jpg' %}"  alt="icon-brand-recognition" class="statistic__img">
-            </div>
-            <h1>What is bot?</h1>
-            <p class="statistic__info-1">
-              Twitter bots, also known as zombies, are automated Twitter accounts controlled by bot software.
-            </p>
-          </figure>
-  
-          <figure class="statistic__box statistic__box--2">
-            <div class="statistic__image">
-            <img src="{% static 'images/mlimg.jpg' %}" alt="icon-detailed-records" class="statistic__img">
-            </div>
-            <h1>Machine Learning</h1>
-            <p class="statistic__info-2">
-              Machine learning classifiers are used to train the machine with datasets provided we are using supervised machine learning
-            </p>
-          </figure>
-  
-          <figure class="statistic__box statistic__box--3">
-            <div class="statistic__image">
-            <img src="{% static 'images/obj.jpg' %}" alt="icon-fully-customizable" class="statistic__img">
-            </div>
-            <h1>Objectives</h1>
-            <p class="statistic__info-3">
-              To separate bot accounts from user using different types of classifiers.
-            </p>
-          </figure>
-  
+        <div class="profile-card">
+            <img src="{% static 'images/kneighbour.png' %}" alt="KNN ROC">
+            <p>KNN - 70%</p>
         </div>
-      </section>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-   <div class="skill-bars">
-        <h1>ACCURACY</h1>
-    <div class="bar">
-      <div class="info">
-        <span>SVM Classifier</span>
-      </div>
-      <div class="progress-line html">
-        <span></span>
-      </div>
+        <div class="profile-card">
+            <img src="{% static 'images/svm.png' %}" alt="SVM ROC">
+            <p>SVM - 75%</p>
+        </div>
+        <div class="profile-card">
+            <img src="{% static 'images/decisiontree.png' %}" alt="Decision Tree ROC">
+            <p>DecisionTree - 74%</p>
+        </div>
+        <div class="profile-card">
+            <img src="{% static 'images/naive.png' %}" alt="Naive Bayes ROC">
+            <p>Naive Bayes - 67%</p>
+        </div>
     </div>
-    <div class="bar">
-      <div class="info">
-        <span>Random Forest</span>
-      </div>
-      <div class="progress-line css">
-        <span></span>
-      </div>
-    </div>
-    <div class="bar">
-      <div class="info">
-        <span>Decision Tree</span>
-      </div>
-      <div class="progress-line jquery">
-        <span></span>
-      </div>
-    </div>
-    <div class="bar">
-      <div class="info">
-        <span>Naive Bayes</span>
-      </div>
-      <div class="progress-line python">
-        <span></span>
-      </div>
-    </div>
-    <div class="bar">
-      <div class="info">
-        <span>K Neighbour</span>
-      </div>
-      <div class="progress-line mysql">
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <br>
-  <br>
-  <br>
-  <br>
-   <section class="foo">
-    <h1>ROC CURVE</h1>
-    </section>
-    <div class="main">
-      <div class="profile-card" >
-          <div class="img">
-              <img src="{% static 'images/randomforest.png' %}" >
-          </div>
-          <div class="caption">
-                    <p>RandomForest-76%</p>
-             
-          </div>
-      </div>
-      <div class="profile-card">
-          <div class="img">
-              <img src="{% static 'images/kneighbour.png'%}">
-          </div>
-          <div class="caption">
-              <p>KNN-70%</p>
-             
-          </div>
-      </div>
-      <div class="profile-card">
-          <div class="img">
-              <img src="{% static 'images/svm.png'%}">
-          </div>
-          <div class="caption">
-              <p>SVM-75%</p>            
-          </div>
-      </div>
- 
-  </div>
-  <br>
-  <br>
-  <br>
-  <br>
-<div class="main2">
-  <div class="profile-card">
-    <div class="img">
-        <img src="{% static 'images/decisiontree.png'%}">
-    </div>
-    <div class="caption">
-        <p>DecisionTree-74%</p>
-       
-    </div>
-</div>
-<div class="profile-card">
-  <div class="img">
-      <img src="{% static 'images/naive.png'%}">
-  </div>
-  <div class="caption">
-      <p>Naive-67%</p>
-     
-  </div>
-</div>
-</div>
+</section>
 
-
-  {% endblock content %} 
+{% endblock %}
