@@ -1,6 +1,6 @@
 # Force numpy first so dependencies resolve correctly
 numpy==1.26.4
-scipy==1.16.6
+scipy==1.14.1
 pandas==2.2.2
 scikit-learn==1.4.2
 matplotlib==3.7.2
@@ -16,10 +16,10 @@ threadpoolctl==3.6.0
 # Django & API
 Django==4.2.6
 djangorestframework==3.14.0
-gunicorn==23.0.0
-psycopg2-binary==2.9.10
-dj-database-url==3.0.1
-whitenoise==6.5.0
+gunicorn==21.2.0
+psycopg2-binary==2.9.9
+dj-database-url==2.1.0
+whitenoise==6.6.0
 asgiref==3.7.2
 
 # Requests / Twitter API
