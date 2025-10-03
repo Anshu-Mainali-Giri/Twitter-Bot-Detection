@@ -19,7 +19,7 @@ import numpy as np
 from sklearn.metrics import accuracy_score, roc_curve, auc
 from sklearn.model_selection import train_test_split
 import matplotlib
-matplotlib.use('TkAgg')
+matplotlib.use('Agg')   # Use non-GUI backend suitable for servers
 mpl.rcParams['patch.force_edgecolor'] = True
 warnings.filterwarnings("ignore")
 os.environ['TK_SILENCE_DEPRECATION'] = '1'
