@@ -1,32 +1,49 @@
 import matplotlib
-matplotlib.use("Agg")   # Must come before pyplot or seaborn
+matplotlib.use("Agg")  # Must come before pyplot or seaborn
 import matplotlib.pyplot as plt
 import base64
 import io
 import pickle
 import pandas as pd
-import requests
-from django import urls
-from django.shortcuts import render
-from django.http import HttpResponse
-from matplotlib import pyplot as plt
-from sklearn import model_selection
-from sklearn.linear_model import LogisticRegression
 import urllib
+from pathlib import Path
+from django.conf import settings
+from django.shortcuts import render
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from tweepy.errors import TooManyRequests
 from bot_detection_model.train_model import TrainModel
 from bot_detection_model.get_twitter_details import TwitterDetails
 
-# Store last predictions in memory (resets on server restart)
+# -------------------------------
+# Globals
+# -------------------------------
 RECENT_ACTIVITY = []
 MAX_RECENT = 5  # Show last 5 predictions
 
+# -------------------------------
+# Load pre-trained model once
+# -------------------------------
+MODEL_PATH = Path(settings.BASE_DIR) / 'bot_detection_model' / 'outputs' / 'model.pkl'
+try:
+    with open(MODEL_PATH, 'rb') as f:
+        saved_model = pickle.load(f)
+    MODEL_LOADED = True
+    print("✅ Pre-trained model loaded successfully.")
+except Exception as e:
+    print(f"⚠️ Could not load model.pkl: {e}")
+    saved_model = None
+    MODEL_LOADED = False
+
+
+# -------------------------------
+# Views
+# -------------------------------
 
 def home(request):
+    """Renders the homepage with a simple example plot."""
     plt.plot(range(10))
     fig = plt.gcf()
-    # convert graph into string buffer and then convert to base64
     buf = io.BytesIO()
     fig.savefig(buf, format='png')
     buf.seek(0)
@@ -36,77 +53,88 @@ def home(request):
 
 
 def user(request):
-    username = request.GET['username']
-    print(username)
+    """Render user page."""
+    username = request.GET.get('username', '')
     return render(request, 'base/user.html', {'name': username})
 
 
 def bot(request):
+    """Render bot analysis page."""
     return render(request, 'base/botanalysis.html')
 
 
 def dashboard(request):
+    """Dashboard showing basic analytics."""
     train_model = TrainModel()
-    
-    # Total tweets analyzed (sum of statuses_count in train data)
+
+    # Load training data for stats
     df_train = train_model.load_data('data.csv')
     total_tweets = df_train['statuses_count'].sum() if 'statuses_count' in df_train.columns else len(df_train)
 
-    # Number of bots detected in recent activity
     bots_detected = sum(1 for item in RECENT_ACTIVITY if item['status'] == 'Bot')
-
-    # Users monitored (unique usernames in recent activity)
     users_monitored = len(set(item['username'] for item in RECENT_ACTIVITY))
 
     context = {
         'total_tweets': total_tweets,
         'bots_detected': bots_detected,
-        'accuracy': 76,  # Optional
+        'accuracy': 76,  # Example static accuracy metric
         'users_monitored': users_monitored,
-        'recent_activity': list(reversed(RECENT_ACTIVITY))  # Show latest first
+        'recent_activity': list(reversed(RECENT_ACTIVITY)),  # Latest first
     }
-
     return render(request, 'base/dashboard.html', context)
 
 
-def train_model(request):
-    train_model = TrainModel()
-    train_model.train()
-    return render(request, 'base/index.html')
+def train_model_view(request):
+    """
+    Optional manual re-training view.
+    Disabled automatically on Render (DEBUG=False).
+    """
+    if settings.DEBUG:
+        tm = TrainModel()
+        tm.train()
+        message = "✅ Model retrained successfully (local)."
+    else:
+        message = "⚠️ Training disabled in production (Render). Using pre-trained model."
+
+    return render(request, 'base/index.html', {'message': message})
+
 
 @csrf_exempt
 def prediction(request):
-    train_model = TrainModel()
+    """Predicts whether a given Twitter user is a bot or not."""
     context = {}
 
     if request.method == 'POST':
-        url = request.POST.get('url')
-        username = url.split('/')[-1]
+        url = request.POST.get('url', '')
+        username = url.split('/')[-1] if url else ''
         twitterapi = TwitterDetails()
 
         try:
             twitterapi.get_user_details(username)
-            output = train_model.my_predict()[0]  # Get single prediction
 
-            status = 'Bot' if output == 1 else 'Not Bot'
+            if MODEL_LOADED and saved_model:
+                # Use pre-trained model for prediction
+                tm = TrainModel()
+                X_test = tm.make_predict_data()
+                output = saved_model.predict(X_test)[0]
+                status = 'Bot' if output == 1 else 'Not Bot'
+            else:
+                status = "Model not available"
 
-            # Store prediction in global recent activity
-            confidence = "N/A"  # Optional: if you have probabilities, you can calculate
+            # Store prediction in memory
             RECENT_ACTIVITY.append({
                 'username': username,
                 'status': status,
-                'confidence': confidence
+                'confidence': "N/A"
             })
-
-            # Keep only last MAX_RECENT items
             if len(RECENT_ACTIVITY) > MAX_RECENT:
                 RECENT_ACTIVITY.pop(0)
 
-            context = {
-                'output': status
-            }
+            context = {'output': status}
 
         except TooManyRequests:
             context = {'output': 'Error: Too Many Requests. Please wait a few minutes.'}
+        except Exception as e:
+            context = {'output': f'Error: {str(e)}'}
 
     return render(request, 'base/index.html', context)

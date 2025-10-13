@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "unsafe-secret-for-dev")
-DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = True
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".onrender.com"]
 
 # Application definition
